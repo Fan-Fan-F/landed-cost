@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LandedCost · 跨境落地成本计算器</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<main class="wrap">
+  <header class="hero">
+    <h1>🌍 跨境落地成本计算器</h1>
+    <p>商品到岸总成本 = 货值 + 国际运费 + 关税 + 进口增值税/GST + 杂费，一算就明白</p>
+  </header>
+
+  <div class="layout">
+    <section class="card form-card">
+      <h2>基础信息</h2>
+      <label>目的国 / 地区
+        <select id="country"></select>
+      </label>
+      <label>商品品类
+        <select id="category"></select>
+      </label>
+      <div class="grid2">
+        <label>商品单价（货值）
+          <input id="price" type="number" min="0" step="0.01" value="50">
+        </label>
+        <label>数量
+          <input id="qty" type="number" min="1" step="1" value="2">
+        </label>
+      </div>
+      <div class="grid2">
+        <label>货值币种
+          <select id="currency">
+            <option value="USD" selected>USD 美元</option>
+            <option value="CNY">CNY 人民币</option>
+            <option value="EUR">EUR 欧元</option>
+          </select>
+        </label>
+        <label>单件重量 (kg)
+          <input id="weight" type="number" min="0" step="0.01" value="0.5">
+        </label>
+      </div>
+
+      <h2>物流</h2>
+      <label>物流渠道
+        <select id="channel"></select>
+      </label>
+      <label class="check-row">
+        <input id="insurance" type="checkbox"> 购买运输保险（货值的 1.5%）
+      </label>
+    </section>
+
+    <section class="card result-card">
+      <h2>成本明细</h2>
+      <div id="breakdown" class="breakdown"></div>
+      <div class="total-box">
+        <div class="total-row"><span>落地总成本</span><strong id="grandTotal">-</strong></div>
+        <div class="total-row sub"><span>单件落地成本</span><span id="unitCost">-</span></div>
+        <div class="total-row sub"><span>税费占货值比例</span><span id="taxRatio">-</span></div>
+      </div>
+      <p class="note" id="deMinimisNote"></p>
+      <canvas id="chart" width="360" height="180"></canvas>
+      <p class="disclaimer">* 数据为演示用参考税率/运费，实际以海关与物流商报价为准。</p>
+    </section>
+  </div>
+</main>
+
+<script src="rates.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
